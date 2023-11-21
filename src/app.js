@@ -72,6 +72,11 @@ app.get("/get_admits", async (req, res) => {
     res.json(data);
 });
 
+app.post("/get_admit", async (req, res) => {
+    const data = await Admit.findById(req.body.admitId)
+    res.json({ status: "success", data });
+});
+
 app.post("/add_temperature", async (req, res) => {
     let admit = await Admit.findById(req.body.admitId);
     let date = req.body.date;
@@ -84,6 +89,10 @@ app.post("/add_temperature", async (req, res) => {
 app.post("/get_temperature", async (req, res) => {
     let admit = await Admit.findById(req.body.admitId);
     res.json({ status: "success", temperatures: admit.temperatures });
+});
+app.post("/get_details", async (req, res) => {
+    let admits = await Admit.find({patientId:req.body.patientId})
+    res.json({ status: "success", admits });
 });
 
 var server = app.listen(8081, function () {

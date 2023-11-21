@@ -26,7 +26,8 @@ const admitSchema = new mongoose.Schema({
             time: String,
             temp: Number
         }
-    ]
+    ],
+  
 });
 
 admitSchema.plugin(AutoIncrementID, {});
